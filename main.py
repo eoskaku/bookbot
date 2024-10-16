@@ -26,10 +26,15 @@ def get_num_char(text):
 
 def print_report(book, word_count, char_count):
     header = f"--- Begin report of {book} ---\n"
-    word_count_text = f"{word_count} words found in the document\n\n"
+    word_count_text = f"{word_count} words found in the document\n"
     alpha_list = filter_dicts_with_alphas(char_count)
     alpha_list.sort(reverse=True, key=sort_on)
-    print(header, word_count_text, alpha_list)
+    print(header, word_count_text)
+    for i in alpha_list:
+        for k, v in i.items():
+            print(f"The '{k}' character was found {v} times")
+    print("--- End report ---")
+
 
 def sort_on(dict):
     return list(dict.values())[0]
