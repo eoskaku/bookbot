@@ -4,6 +4,7 @@ def main():
     num_of_words = get_num_words(text)
     chars_dict = get_num_char(text)
     print_report(book_path, num_of_words, chars_dict)
+    # print(sort_on(chars_dict))
 
 def get_book_text(path):
     with open(path) as f:
@@ -27,7 +28,11 @@ def print_report(book, word_count, char_count):
     header = f"--- Begin report of {book} ---\n"
     word_count_text = f"{word_count} words found in the document\n\n"
     alpha_list = filter_dicts_with_alphas(char_count)
+    alpha_list.sort(reverse=True, key=sort_on)
     print(header, word_count_text, alpha_list)
+
+def sort_on(dict):
+    return list(dict.values())[0]
 
 def filter_dicts_with_alphas(lst):
     character_list = []
